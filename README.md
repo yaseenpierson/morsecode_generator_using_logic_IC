@@ -112,7 +112,6 @@ Do not power up the whole board at once. Build and test in stages:
 Before assembling the physical breadboard, the complete logic architecture was simulated in **LTspice** using behavioral models. This verified the asynchronous edge detection, monostable timing, and latch memory without the risk of damaging physical components.
 
 ![LTspice Waveform Simulation](simulationresult.png)
-*(Note to repo owner: Upload your LTspice screenshot to the repo and name it `simulation.png`, or change the link above to match your image filename).*
 
 ### Trace Breakdown (What the simulation proves):
 *   🟢 **Green (`V(button_clean_n)`)**: The debounced input signal from the button.
