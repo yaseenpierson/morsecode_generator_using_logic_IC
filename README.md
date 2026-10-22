@@ -105,4 +105,27 @@ Do not power up the whole board at once. Build and test in stages:
 *   *High-Power LEDs:* If using a high-power LED (e.g., 1W), you must recalculate R10 and R9. A 2N2222 can handle ~500mA, but you need to provide sufficient base current (approx 50mA). A logic-level MOSFET (like 2N7000) is recommended for high-power builds. 
 
 ---
+---
+
+## 📈 LTspice Simulation & Verification
+
+Before assembling the physical breadboard, the complete logic architecture was simulated in **LTspice** using behavioral models. This verified the asynchronous edge detection, monostable timing, and latch memory without the risk of damaging physical components.
+
+![LTspice Waveform Simulation](simulation result.png)
+*(Note to repo owner: Upload your LTspice screenshot to the repo and name it `simulation.png`, or change the link above to match your image filename).*
+
+### Trace Breakdown (What the simulation proves):
+*   🟢 **Green (`V(button_clean_n)`)**: The debounced input signal from the button.
+*   🩵 **Teal (`V(out1)`)**: The 200 ms threshold timer (NE555 #1).
+*   🔴 **Red (`V(decision)`)**: The output of the decision latch (74HC74).
+*   🟣 **Purple (`V(out2)`)**: The final flash output (NE555 #2).
+*   🔵 **Blue (`V(flash_trig)`)**: The trigger pulse generated on button release.
+
+### Simulation Results:
+1.  **First Press (Left side of plot):** The button is released *before* the 200 ms timer (`out1`) finishes. The latch (`decision`) stays LOW (0V). On release, the flash timer (`out2`) pulses for exactly **100 ms**. (Correct DOT behavior).
+2.  **Second Press (Right side of plot):** The button is held until the 200 ms timer (`out1`) finishes its cycle. The latch (`decision`) successfully flips HIGH (5V). On release, the flash timer (`out2`) pulses for exactly **300 ms**. (Correct DASH behavior).
+
+This simulation confirms that the **200 ms classification boundary is completely phase-independent** and the logic is ready for physical implementation.
+
+---
 Created as a discrete-logic alternative to microcontroller-based Morse keyers. Happy Hacking!
