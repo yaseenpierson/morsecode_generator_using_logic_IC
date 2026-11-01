@@ -1,4 +1,4 @@
-# 🔦 Morse Code Flashlight Transmitter ⚡
+# 🔦 Morse Code Flashlight Transmitter 
 ### A Standalone, No-Microcontroller Morse Keyer
 
 [![Logic Family](https://img.shields.io/badge/Logic-74HC-blue)](#)
