@@ -125,6 +125,8 @@ Before assembling the physical breadboard, the complete logic architecture was s
 2.  **Second Press (Right side of plot):** The button is held until the 200 ms timer (`out1`) finishes its cycle. The latch (`decision`) successfully flips HIGH (5V). On release, the flash timer (`out2`) pulses for exactly **300 ms**. (Correct DASH behavior).
 
 This simulation confirms that the **200 ms classification boundary is completely phase-independent** and the logic is ready for physical implementation.
-
+## KICAD PCB DESIGN
+![PCB](PCB_MORSE.png)
+Designed the PCB in Kicad
 ---
 Created as a discrete-logic alternative to microcontroller-based Morse keyers. Happy Hacking!
